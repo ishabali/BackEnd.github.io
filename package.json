@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/NW-BookClub2020/BackEnd.github.io#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
 }
