@@ -5,7 +5,7 @@ exports.insertreview = async (user_obj) => {
     const [data] = await connection.query(`INSERT INTO reviews SET ?`, user_obj);
     return data;
 }
-exports.getreviewById = async (id) => {
+exports.getReviewById = async (id) => {
     const connection = await mysql.connect();
     const [data] = await connection.query(`SELECT * FROM reviews WHERE review_id = ?`, id);
     return data[0];
@@ -32,11 +32,12 @@ exports.getById = async (id) => {
 }
 exports.update = async (auction_obj) => {
     const connection = await mysql.connect();
-    const [data] = await connection.query(`UPDATE user SET ? WHERE id = ?`, [auction_obj, auction_obj.id]);
+    const [data] = await connection.query(`UPDATE user SET ? WHERE user_id = ?`, [auction_obj, auction_obj.id]);
     return data;
 }
 exports.delete = async (id) => {
     const connection = await mysql.connect();
-    const [data] = await connection.query(`DELETE FROM user WHERE id = ?`, id);
+    console.log(id);
+    const [data] = await connection.query(`DELETE FROM user WHERE user_id = ?`, id);
     return data;
 }

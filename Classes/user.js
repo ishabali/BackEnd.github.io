@@ -77,14 +77,22 @@ class User {
     }
 
     async populateBookFromId(){
-        const result = await reviews.getreviewById(this._user.id);
+        const result = await reviews.getReviewById(this._user);
         this._user = result;
     }
     async populateUserFromId(){
-        const result = await reviews.getById(this._user.id);
+        const result = await reviews.getById(this._user);
         this._user = result;
     }
 
+    async deleteFromUserDB(){
+        await reviews.delete(this._user);
+        this._user.deleted = true;
+    }
+    async deleteFromBookDB(){
+        await reviews.deletereview(this._user.review_id);
+        this._user.deleted = true;
+    }
 
     async updateReview(review){
            const result = await reviews.updatereview(this._user);
@@ -93,14 +101,6 @@ class User {
     async updateUser(user){
         const result = await reviews.update(this._user);
         this._user = result;
- }
-    async deleteFromUserDB(){
-        await reviews.delete(this._user.id);
-        this._user.deleted = true;
-    }
-    async deleteFromBookDB(){
-        await reviews.deletereview(this._user.review_id);
-        this._user.deleted = true;
     }
 
 
