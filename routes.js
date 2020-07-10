@@ -1,4 +1,4 @@
-const review = require('./Controllers/controller');
+const review = require('./controllers/controller');
 
 exports.route = (app) => {
     app.post("/user", review.create);
