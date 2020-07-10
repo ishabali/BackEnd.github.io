@@ -1,3 +1,5 @@
+drop database bookclub;
+
 create database bookclub;
 
 use bookclub;
