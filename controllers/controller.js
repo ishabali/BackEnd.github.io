@@ -29,3 +29,21 @@ exports.deleteUser = async (request, response) => {
   await user.deleteFromUserDB();
   response.json(user.toLiteral());
 }
+
+exports.deleteReview = async (request, response) => {
+    const user = new User(request.params.id);
+    await user.deleteFromBookDB();
+    response.json(user.toLiteral());
+}
+
+exports.updateUser = async (request, response) => {
+    const user = new User(request.body);
+    await user.updateUser();
+    response.json(user.toLiteral());
+}
+
+exports.updateReview = async (request, response) => {
+    const user = new User(request.body);
+    await user.updateReview();
+    response.json(user.toLiteral());
+}
