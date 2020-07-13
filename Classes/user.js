@@ -80,6 +80,12 @@ class User {
         const result = await reviews.getReviewById(this._user);
         this._user = result;
     }
+
+    async populateAllReviews(){
+        const result = await reviews.getReviewAll();
+        this._user = result;
+    }
+
     async populateUserFromId(){
         const result = await reviews.getById(this._user);
         this._user = result;
