@@ -1,4 +1,5 @@
 const User = require('../Classes/user');
+const { request, response } = require('express');
 
 exports.create = async (request, response) => {
     const user = new User(request.body);
@@ -7,7 +8,12 @@ exports.create = async (request, response) => {
 }
 
 exports.createReview = async (request, response) => {
-    const user = new User(request.body);
+    const user = new User({
+        book_id:request.body.book_id,
+        user_id:request.body.user_id,
+        reviews:request.body.reviews,
+        rating:request.body.rating
+    });
     await user.insertToBookDB();
     response.json(user.toLiteral());
 }
@@ -21,6 +27,12 @@ exports.getUserById = async (request, response) => {
 exports.getReviewById = async (request, response) => {
     const user = new User(request.params.id);
     await user.populateBookFromId();
+    response.json(user.toLiteral());
+}
+
+exports.getReviewAll = async (request,response) => {
+    const user = new User();
+    await user.populateAllReviews();
     response.json(user.toLiteral());
 }
 
