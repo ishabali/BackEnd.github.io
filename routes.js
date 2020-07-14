@@ -8,6 +8,6 @@ exports.route = (app) => {
     app.get("/review-all", review.getReviewAll);
     app.delete("/user/:id", review.deleteUser);
     app.delete("/review/:id", review.deleteReview);
-    app.put("/user", review.updateUser);
-    app.put("/review", review.updateReview);
+    app.put("/user/:id", review.updateUser);
+    app.put("/review/:id", review.updateReview);
 } 

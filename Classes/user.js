@@ -108,6 +108,7 @@ class User {
     async updateReview(){
            const result = await reviews.updatereview(this._user);
            this._user = result;
+           console.log(result);
     }
 
 
