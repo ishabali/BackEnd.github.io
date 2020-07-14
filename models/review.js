@@ -8,7 +8,7 @@ exports.insertreview = async (user_obj) => {
 exports.getReviewById = async (id) => {
     const connection = await mysql.connect();
     const [data] = await connection.query(`SELECT * FROM reviews WHERE book_id = ?`, id);
-    return data[0];
+    return data;
 }
 exports.getReviewAll = async () => {
     const connection = await mysql.connect();
