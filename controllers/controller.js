@@ -1,5 +1,5 @@
 const User = require('../Classes/user');
-const { request, response } = require('express');
+//const { request, response } = require('express');
 
 exports.create = async (request, response) => {
     const user = new User(request.body);
@@ -55,7 +55,13 @@ exports.updateUser = async (request, response) => {
 }
 
 exports.updateReview = async (request, response) => {
-    const user = new User(request.body);
+    console.log(request.body);
+    const user = new User({
+        review_id:request.body.review_id,
+        reviews:request.body.reviews,
+        rating:request.body.rating
+    });
+    console.log(user);
     await user.updateReview();
     response.json(user.toLiteral());
 }
