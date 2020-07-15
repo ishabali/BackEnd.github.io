@@ -1,4 +1,5 @@
 const mysql = require('../connection');
+const { response } = require('express');
 
 exports.insertreview = async (user_obj) => {
     const connection = await mysql.connect();
@@ -46,5 +47,12 @@ exports.updatereview = async (user_obj) => {
     console.log(user_obj);
     const connection = await mysql.connect();
     const [data] = await connection.query(`UPDATE reviews SET ? WHERE review_id = ?`, [user_obj, user_obj.review_id]);
+    return data;
+}
+exports.checkReview = async (user_obj) => {
+    console.log("Model checkReview", user_obj);
+    const connection = await mysql.connect();
+    const [data] = await connection.query(`SELECT * FROM reviews WHERE book_id = ? and user_id = ?`, [user_obj.book_id, user_obj.user_id]);
+    console.log("Query resonse", response.statusCode);
     return data;
 }
