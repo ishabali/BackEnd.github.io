@@ -8,14 +8,36 @@ exports.create = async (request, response) => {
 }
 
 exports.createReview = async (request, response) => {
-    const user = new User({
-        book_id:request.body.book_id,
-        user_id:request.body.user_id,
-        reviews:request.body.reviews,
-        rating:request.body.rating
-    });
-    await user.insertToBookDB();
-    response.json(user.toLiteral());
+    console.log("Controller CR was called", request.body);
+    
+    const checkReview = async () => {
+        const user = new User({
+            book_id:request.body.book_id,
+            user_id:request.body.user_id
+        });
+        console.log("Controller2", user);
+        const result = await user.checkReview();
+        console.log("checkReview response", result)
+        return result;
+        }
+    const item = await checkReview();
+    console.log("item", item);
+
+    if (item == false) {
+        console.log("if")
+        const user = new User({
+            book_id:request.body.book_id,
+            user_id:request.body.user_id,
+            reviews:request.body.reviews,
+            rating:request.body.rating
+            });
+            await user.insertToBookDB();
+            response.json(user.toLiteral());
+        } 
+    else { 
+        console.log("else")
+        response.json(false)         
+    }
 }
 
 exports.getUserById = async (request, response) => {
@@ -65,3 +87,14 @@ exports.updateReview = async (request, response) => {
     await user.updateReview();
     response.json(user.toLiteral());
 }
+
+// exports.checkReview = async (request, response) => {
+//     console.log("Controller1", request.body);
+//     const user = new User({
+//         book_id:request.body.book_id,
+//         user_id:request.body.user_id
+//     });
+//     console.log("Controller2", user);
+//     await user.checkReview();
+//     response.json(user.toLiteral());
+// }
