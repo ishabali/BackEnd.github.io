@@ -87,6 +87,17 @@ exports.updateReview = async (request, response) => {
     await user.updateReview();
     response.json(user.toLiteral());
 }
+exports.login = async (request, response) => {
+    console.log(request.body)
+    console.log("controller");
+    const user = new User({
+        user_name:request.body.user_name,
+        email:request.body.email
+    });
+    await user.login();
+    response.json(user.toLiteral());
+}
+
 
 // exports.checkReview = async (request, response) => {
 //     console.log("Controller1", request.body);

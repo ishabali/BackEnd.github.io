@@ -117,6 +117,12 @@ class User {
         console.log("Class checkReview", result);
         return result
     }
+    async login(){
+        const result = await reviews.login(this._user);
+        this._user = result;
+        console.log("Class login", result);
+        return result
+    }
 }
 
 module.exports = User;

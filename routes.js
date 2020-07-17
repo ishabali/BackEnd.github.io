@@ -10,4 +10,5 @@ exports.route = (app) => {
     app.delete("/review/:id", review.deleteReview);
     app.put("/user/:id", review.updateUser);
     app.put("/review/:id", review.updateReview);
+    app.get("/login",review.login);
 } 
