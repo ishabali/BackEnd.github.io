@@ -12,8 +12,8 @@ exports.createReview = async (request, response) => {
     
     const checkReview = async () => {
         const user = new User({
-            book_id:request.body.book_id,
-            user_id:request.body.user_id
+            book_id:request.body.book_id.trim(),
+            user_id:request.body.user_id.trim()
         });
         console.log("Controller2", user);
         const result = await user.checkReview();
@@ -26,10 +26,10 @@ exports.createReview = async (request, response) => {
     if (item == false) {
         console.log("if")
         const user = new User({
-            book_id:request.body.book_id,
-            user_id:request.body.user_id,
+            book_id:request.body.book_id.trim(),
+            user_id:request.body.user_id.trim(),
             reviews:request.body.reviews,
-            rating:request.body.rating
+            rating:request.body.rating.trim()
             });
             await user.insertToBookDB();
             response.json(user.toLiteral());
@@ -81,7 +81,7 @@ exports.updateReview = async (request, response) => {
     const user = new User({
         review_id:request.body.review_id,
         reviews:request.body.reviews,
-        rating:request.body.rating
+        rating:request.body.rating.trim()
     });
     console.log(user);
     await user.updateReview();
