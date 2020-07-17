@@ -88,24 +88,17 @@ exports.updateReview = async (request, response) => {
     response.json(user.toLiteral());
 }
 exports.login = async (request, response) => {
-    console.log(request.body)
-    console.log("controller");
+    console.log("controller",request.params);
     const user = new User({
-        user_name:request.body.user_name,
-        email:request.body.email
+        user_name:request.params.user_name,
+        email:request.params.email
     });
-    await user.login();
-    response.json(user.toLiteral());
+    const result = await user.login();
+    console.log("controller response", result);
+    if (result.length) {
+        const [replay] = result;
+        response.json(replay);
+    } else {
+        response.json(false);
+    }
 }
-
-
-// exports.checkReview = async (request, response) => {
-//     console.log("Controller1", request.body);
-//     const user = new User({
-//         book_id:request.body.book_id,
-//         user_id:request.body.user_id
-//     });
-//     console.log("Controller2", user);
-//     await user.checkReview();
-//     response.json(user.toLiteral());
-// }

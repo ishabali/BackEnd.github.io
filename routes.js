@@ -5,10 +5,9 @@ exports.route = (app) => {
     app.post("/review-new", review.createReview);
     app.get("/user/:id", review.getUserById);
     app.get("/review/:id", review.getReviewById);
-    // app.get("/review-all", review.getReviewAll);
     app.delete("/user/:id", review.deleteUser);
     app.delete("/review/:id", review.deleteReview);
     app.put("/user/:id", review.updateUser);
-    app.put("/review/:id", review.updateReview);
-    app.get("/login",review.login);
-} 
+    app.put("/reviewUp", review.updateReview);
+    app.get("/login/:user_name/:email", review.login)
+}

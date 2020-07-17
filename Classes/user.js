@@ -6,7 +6,7 @@ class User {
         this._user= user_obj;
     }
 
-     get id(){
+    get id (){
         return this._user.id;
     }
     get user_name(){
@@ -34,7 +34,7 @@ class User {
     //     return this._user.reviews;
     // }
 
-    // set reviews(reviews){
+    // set review (review) {
     //     this._user.reviews = reviews;
     // }
 
@@ -58,20 +58,16 @@ class User {
         return this._user;
     }
 
-    // exists(){
-    //     return (this._item) ? true : false;
-    // }
+
 
     async insertToBookDB(){
-        // const result = userModel.getUserByName(user_name);
-        // if (result) user.is_new = false; return false;
+ 
         const result = await reviews.insertreview(this._user);
         this._user.review_id = result.insertId;
        
     }
     async insertToUserDB(){
-        // const result = userModel.getUserByName(user_name);
-        // if (result) user.is_new = false; return false;
+
         const result = await reviews.insert(this._user);
         this._user.id = result.insertId;
     }
@@ -93,11 +89,11 @@ class User {
 
     async deleteFromUserDB(){
         await reviews.delete(this._user);
-        // this._user.deleted = true;
+        
     }
     async deleteFromBookDB(){
         await reviews.deletereview(this._user);
-        // this._user.deleted = {deleted: true};
+   
     }
     
     async updateUser(){
