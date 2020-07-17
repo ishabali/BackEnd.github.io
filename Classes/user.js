@@ -6,12 +6,12 @@ class User {
         this._user= user_obj;
     }
 
-    // get id(){
-    //     return this._user.id;
-    // }
-    // get user_name(){
-    //     return this._user.user_name
-    // }
+     get id(){
+        return this._user.id;
+    }
+    get user_name(){
+        return this._user.user_name
+    }
     // set user_name(user_name){
     //     this._user.user_name = user_name
     // }
