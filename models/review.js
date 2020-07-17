@@ -59,7 +59,7 @@ exports.checkReview = async (user_obj) => {
 exports.login = async (user_obj) => {
     console.log("Model login", user_obj);
     const connection = await mysql.connect();
-    const [data] = await connection.query(`SELECT * FROM user WHERE user_name = ? and email= ?`, [user_obj.user_name, user_obj.email]);
-    console.log("Query resonse", response.statusCode);
+    const data = await connection.query(`SELECT * FROM user WHERE user_name = ? and email= ?`, [user_obj.user_name, user_obj.email]);
+    console.log("Query resonse", data[0]);
     return data[0];
 }
